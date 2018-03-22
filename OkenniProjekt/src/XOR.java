@@ -34,12 +34,7 @@ public class XOR {
 			    	String msg = "";
 			    	for(int i = 0; i < text.length();i++) {
 			    		int xor = text.charAt(i) ^ key.charAt(i%key.length());
-			    		char c = (char)xor;
-			    		String s = ""+ c;
-			    		if(s.equals("\n"))
-			    			msg += text.charAt(i);
-			    		else
-			    			msg += s;
+			    		msg += (char)xor;
 			    	}
 			    	lines.set(j, msg);
 				}
