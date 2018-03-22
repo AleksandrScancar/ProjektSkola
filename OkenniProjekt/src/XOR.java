@@ -43,8 +43,10 @@ public class XOR {
 				try {
 					f.createNewFile();
 					BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-					for(String s : lines) 
-						bw.write(s + "\n");
+					for(String s : lines) {
+						bw.write(s);
+						bw.newLine();
+					}
 					bw.close();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
