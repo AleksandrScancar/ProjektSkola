@@ -95,7 +95,7 @@ public class MainApp {
 			        fileDialog.setVisible(true);
 					case 2:
 						String pomoc=fileDialog.getDirectory()+fileDialog.getFile();
-			        File  f = XOR.encrypt(filename, textArea.getText(),pomoc);
+						XOR.encrypt(filename, textArea.getText(),pomoc);
 			        
 			        break;
 					}

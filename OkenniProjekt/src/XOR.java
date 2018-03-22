@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class XOR {
 
-    public static File encrypt(String path, String key,String finalfile) throws Exception {
+    public static void encrypt(String path, String key,String finalfile) throws Exception {
     	if(new File(path).exists()) {
     		if(!key.equals(null)) {
 		    	ArrayList<String> lines = new ArrayList<String>();
@@ -34,12 +34,14 @@ public class XOR {
 			    	String msg = "";
 			    	for(int i = 0; i < text.length();i++) {
 			    		int xor = text.charAt(i) ^ key.charAt(i%key.length());
-			    		msg += (char)xor;
+			    		String s = "" + (char) xor;
+			    		if(!s.equals("\n")) 
+			    			msg += s;
+			    		else
+			    			msg += text.charAt(i);
 			    	}
 			    	lines.set(j, msg);
 				}
-				String[] pathSplitted = path.split("\\.");
-				File f= new File(pathSplitted[0] + "Encrypted." + pathSplitted[1]);	
 				try {
 					BufferedWriter bw = new BufferedWriter(new FileWriter(finalfile));
 					for(String s : lines) {
@@ -51,7 +53,7 @@ public class XOR {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				return f;
+				
     		}else {
     			throw new Exception("Key not given");
     		}
