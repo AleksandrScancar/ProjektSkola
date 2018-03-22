@@ -11,9 +11,17 @@ import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
+import java.awt.Frame;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.FilenameFilter;
+import java.util.Properties;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 
@@ -62,7 +70,7 @@ public class MainApp {
 				fd.setDirectory("C:\\");
 				fd.setBounds(100, 100, 590, 413);
 				fd.setTitle("Vyber soubor");
-				fd.setName(".txt");
+				fd.setFile("*.txt");
 				fd.setVisible(true);
 			}
 		});
@@ -71,12 +79,32 @@ public class MainApp {
 		btnVymenSoubor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String filename = fd.getDirectory()+fd.getFile();
+				FileOutputStream fsave = null;
+
+				FileDialog fileDialog = new FileDialog(new Frame(), "Ulož zakodovaný", FileDialog.SAVE);
 				try {
-					File  f = XOR.encrypt(filename, textArea.getText());
+					switch (1) {
+					case 1:  
+					String name = "insert here your path..";
+					fileDialog.setFilenameFilter(new FilenameFilter(){
+			                @Override
+			                public boolean accept(File dir, String name) {
+			                    return name.endsWith(".jpg") || name.endsWith(".jpeg");
+			                }
+			            });
+			        fileDialog.setVisible(true);
+					case 2:
+						String pomoc=fileDialog.getDirectory()+fileDialog.getFile();
+			        File  f = XOR.encrypt(filename, textArea.getText(),pomoc);
+			        
+			        break;
+					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(frame, "Nevybral si žádný soubor na kodování", "Chyba",
+					        JOptionPane.ERROR_MESSAGE);
 				}
+				
 			}
 		});
 		

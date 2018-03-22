@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class XOR {
 
-    public static File encrypt(String path, String key) throws Exception {
+    public static File encrypt(String path, String key,String finalfile) throws Exception {
     	if(new File(path).exists()) {
     		if(!key.equals(null)) {
 		    	ArrayList<String> lines = new ArrayList<String>();
@@ -41,8 +41,7 @@ public class XOR {
 				String[] pathSplitted = path.split("\\.");
 				File f= new File(pathSplitted[0] + "Encrypted." + pathSplitted[1]);	
 				try {
-					f.createNewFile();
-					BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+					BufferedWriter bw = new BufferedWriter(new FileWriter(finalfile));
 					for(String s : lines) {
 						bw.write(s);
 						bw.newLine();
