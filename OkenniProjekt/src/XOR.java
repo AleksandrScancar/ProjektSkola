@@ -9,16 +9,7 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 
 public class XOR {
-    public static void main(String args[]) { // test  
-    	
-             try {
-				encrypt("C:\\Slovnik\\test.txt", "ehm");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-    }
-    
+
     public static File encrypt(String path, String key) throws Exception {
     	if(new File(path).exists()) {
 	    	ArrayList<String> lines = new ArrayList<String>();
