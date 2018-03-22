@@ -12,44 +12,48 @@ public class XOR {
 
     public static File encrypt(String path, String key) throws Exception {
     	if(new File(path).exists()) {
-	    	ArrayList<String> lines = new ArrayList<String>();
-			try {
-				BufferedReader br = new BufferedReader(new FileReader(path));
-				String s = "";
-				while((s = br.readLine()) != null)
-					lines.add(s);
-				br.close();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			for(int j = 0; j < lines.size(); j++) {
-				String normalized = Normalizer.normalize(lines.get(j), Normalizer.Form.NFD);
-				String text = normalized.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-		    	String msg = "";
-		    	for(int i = 0; i < text.length();i++) {
-		    		int xor = text.charAt(i) ^ key.charAt(i%key.length());
-		    		msg += (char)xor;
-		    	}
-		    	lines.set(j, msg);
-			}
-			String[] pathSplitted = path.split("\\.");
-			File f= new File(pathSplitted[0] + "Encrypted." + pathSplitted[1]);	
-			try {
-				f.createNewFile();
-				BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-				for(String s : lines) 
-					bw.write(s + "\n");
-				bw.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return f;
+    		if(!key.equals(null)) {
+		    	ArrayList<String> lines = new ArrayList<String>();
+				try {
+					BufferedReader br = new BufferedReader(new FileReader(path));
+					String s = "";
+					while((s = br.readLine()) != null)
+						lines.add(s);
+					br.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				for(int j = 0; j < lines.size(); j++) {
+					String normalized = Normalizer.normalize(lines.get(j), Normalizer.Form.NFD);
+					String text = normalized.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+			    	String msg = "";
+			    	for(int i = 0; i < text.length();i++) {
+			    		int xor = text.charAt(i) ^ key.charAt(i%key.length());
+			    		msg += (char)xor;
+			    	}
+			    	lines.set(j, msg);
+				}
+				String[] pathSplitted = path.split("\\.");
+				File f= new File(pathSplitted[0] + "Encrypted." + pathSplitted[1]);	
+				try {
+					f.createNewFile();
+					BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+					for(String s : lines) 
+						bw.write(s + "\n");
+					bw.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return f;
+    		}else {
+    			throw new Exception("Key not given");
+    		}
     	}else {
     		throw new Exception("File not exists");
     	}
