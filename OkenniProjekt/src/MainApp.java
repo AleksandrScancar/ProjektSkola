@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
+import java.nio.file.Files;
 import java.util.Properties;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
@@ -96,7 +97,10 @@ public class MainApp {
 					case 2:
 						String pomoc=fileDialog.getDirectory()+fileDialog.getFile();
 			        File  f = XOR.encrypt(filename, textArea.getText(),pomoc);
-			        
+			        FileOutputStream out = new FileOutputStream("C:\\Users\\aleks\\Desktop\\ektor.txt");
+			        FileInputStream in = new FileInputStream("C:\\Users\\aleks\\Desktop\\ektor.txt");
+			       
+			        out.close();
 			        break;
 					}
 				} catch (Exception e) {
