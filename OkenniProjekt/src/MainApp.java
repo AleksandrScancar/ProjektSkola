@@ -98,9 +98,9 @@ public class MainApp {
 					        fileDialog.setVisible(true);
 						case 2:
 							if(fileDialog.getFile().endsWith(".txt")) {	
-								XOR.encrypt(filename, textArea.getText(), fileDialog.getDirectory()+fileDialog.getFile());
+								XOR.crypt(filename, textArea.getText(), fileDialog.getDirectory()+fileDialog.getFile());
 							}else {
-								XOR.encrypt(filename, textArea.getText(), fileDialog.getDirectory()+fileDialog.getFile()+".txt");
+								XOR.crypt(filename, textArea.getText(), fileDialog.getDirectory()+fileDialog.getFile()+".txt");
 							}
 				        break;
 						}

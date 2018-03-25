@@ -8,9 +8,31 @@ import java.io.IOException;
 import java.text.Normalizer;
 import java.util.ArrayList;
 
-public class XOR {
+/**
+ * <h1>XOR encoder/decoder</h1>
+ * @author Adam Štursa
+ *
+ */
 
-    public static File encrypt(String path, String key,String finalfile) throws Exception {
+public class XOR {
+	/**
+	 * 
+	 * <h3> public static void crypt(String path, String key,String finalfile) </h3>
+	 * <br>
+	 * Tato metoda naète text z vybraného souboru,
+	 * upraví ho tak aby aby netvoøil nežádané znaky
+	 * (odstraní diakritiku, protože ta skoro vždy vede 
+	 * k takovýmto znakùm + hlídá aby výsledný znak nebyl 
+	 * mezera), text zakóduje a uloží do vybraného souboru
+	 * <br>
+	 * <p></p>
+	 * @param path cesta k uživatelem vybranému souboru
+	 * @param key uživatelem zadaný klíè pro zaklíèování/odklíèování
+	 * @param finalfile cesta k uživatelem vybraným souborem pro uložení
+	 * @throws Exception File not exists
+	 * @throws Exception Key not given
+	 */
+    public static void crypt(String path, String key,String finalfile) throws Exception {
     	if(new File(path).exists()) {
     		if(!key.equals(null)) {
 		    	ArrayList<String> lines = new ArrayList<String>();
@@ -37,9 +59,7 @@ public class XOR {
 			    		msg += (char)xor;
 			    	}
 			    	lines.set(j, msg);
-				}
-				String[] pathSplitted = path.split("\\.");
-				File f= new File(pathSplitted[0] + "Encrypted." + pathSplitted[1]);	
+				}	
 				try {
 					BufferedWriter bw = new BufferedWriter(new FileWriter(finalfile));
 					for(String s : lines) {
@@ -51,7 +71,7 @@ public class XOR {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				return f;
+
     		}else {
     			throw new Exception("Key not given");
     		}
