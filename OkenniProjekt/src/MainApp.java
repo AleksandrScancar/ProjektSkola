@@ -13,7 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 /**
  * <h1>Main</h1>
- * @author aleksandr scancar
+ * @author Aleksandr Scancar
  * <p>Aplikace vytvoøena zapomocí WindowBuilder<p>
  */
 public class MainApp {
@@ -63,7 +63,7 @@ public class MainApp {
 		JTextArea textArea = new JTextArea();
 		textArea.setTabSize(2);
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 19));
-		/**
+		/** 
 		 * Nadpis v aplikaci-text
 		 */
 		JLabel lblKodovacka = new JLabel("Kodova\u010Dka");
